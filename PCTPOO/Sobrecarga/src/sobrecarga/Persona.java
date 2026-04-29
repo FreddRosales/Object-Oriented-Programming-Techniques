@@ -20,21 +20,43 @@ public class Persona
     private String regi_lab;
     private String regi_pen;
     private String codigo;
+    private static int ultimcorrel=0;
 
-    public String getTipodoc() {
+    public String getTipoDoc() {
         return tipodoc;
     }
 
-    public void setTipodoc(String tipodoc) {
-        this.tipodoc = tipodoc;
+    public void setTipoDoc(String tipoDoc) {
+        if (tipoDoc.equalsIgnoreCase("DNI")|| tipoDoc.equalsIgnoreCase("CE"))
+        {
+            this.tipodoc = tipoDoc;
+        }
+        else
+        {
+            System.out.println(" Tipo de Documento erróneo");
+        }
     }
 
-    public String getNumdoc() {
+    public String getNumDoc() {
         return numdoc;
     }
 
-    public void setNumdoc(String numdoc) {
-        this.numdoc = numdoc;
+    public void setNumDoc(String numDoc) {
+        if(this.tipodoc.equalsIgnoreCase("DNI"))
+        {
+            if(numDoc.length()==8)
+            {
+                this.numdoc=numDoc;
+            }
+        }
+        else if(numDoc.length()==9)
+            {  
+            this.numdoc = numDoc;
+            }
+        else
+        {
+            System.out.println(" Error");
+        }
     }
 
     public String getPaterno() {
@@ -61,12 +83,12 @@ public class Persona
         this.nombres = nombres;
     }
 
-    public String getNumcel() {
+    public String getNumCelul() {
         return numcel;
     }
 
-    public void setNumcel(String numcel) {
-        this.numcel = numcel;
+    public void setNumCelul(String numCelul) {
+        this.numcel = numCelul;
     }
 
     public String getCorreo() {
@@ -83,6 +105,18 @@ public class Persona
 
     public void setRegi_lab(String regi_lab) {
         this.regi_lab = regi_lab;
+        if (this.regi_lab.equalsIgnoreCase("CAS") || this.regi_lab.equalsIgnoreCase("276"))
+        {
+            this.regi_lab=regi_lab;
+        }
+        else if(this.regi_lab.equalsIgnoreCase("728"))
+        {
+            this.regi_lab=regi_lab;
+        }
+        else
+        {
+            System.out.println(" Error!!");
+        }
     }
 
     public String getRegi_pen() {
@@ -100,6 +134,38 @@ public class Persona
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+
+    public static int getUltimcorrel() {
+        return ultimcorrel;
+    }
+
+    public static void setUltimcorrel(int ultimcorrel) {
+        Persona.ultimcorrel = ultimcorrel;
+    }
+   
+    public Persona() {
+    }
     
+    
+    public Persona(String tipoDoc, String numDoc,String nombres, String paterno,
+            String materno, String numCelul, String correo, String regi_lab, String regi_pen) {
+        this.tipodoc = tipoDoc;
+        this.numdoc = numDoc;
+        this.nombres = nombres;
+        this.paterno = paterno;
+        this.materno = materno;
+        this.numcel = numCelul;
+        this.correo=correo;
+        this.regi_lab = regi_lab;
+        this.regi_pen = regi_pen;
+    }
+    
+    public static String Generar_codigo()
+    {
+        ultimcorrel = ultimcorrel + 1;
+        String codigogen = String.format("T%05d", ultimcorrel);
+        return codigogen;
+        
+    }
     
 }

@@ -24,16 +24,46 @@ public class Asistente
         return tipo_documento;
     }
 
-    public void setTipo_documento(String tipo_documento) {
-        this.tipo_documento = tipo_documento;
+    public void setTipo_documento(String tipo_documento) 
+    {
+        if(tipo_documento.equalsIgnoreCase("DNI") || tipo_documento.equalsIgnoreCase("CE"))
+        {
+            this.tipo_documento = tipo_documento;
+        }
+        else
+        {
+            System.out.println(" ¡Error!");
+        }
     }
 
     public String getNum_documento() {
         return num_documento;
     }
 
-    public void setNum_documento(String num_documento) {
-        this.num_documento = num_documento;
+    public void setNum_documento(String num_documento) 
+    {
+        if (this.tipo_documento.equalsIgnoreCase("DNI"))
+        {
+            if(num_documento.length()== 8)
+            {
+               this.num_documento = num_documento;
+            }
+            else
+            {
+                System.out.println(" ¡Error!");
+            }
+        }
+        else if(this.tipo_documento.equalsIgnoreCase("CE"))
+            {
+                if(num_documento.length()==9)
+                {
+                    this.num_documento = num_documento;
+                }
+                else
+                {
+                    System.out.println(" ¡Error!");
+                }
+            }
     }
 
     public String getPaterno() {
@@ -64,8 +94,17 @@ public class Asistente
         return celular;
     }
 
-    public void setCelular(int celular) {
-        this.celular = celular;
+    public void setCelular(int celular) 
+    {
+        String num_celu = String.valueOf(celular); //convierte un int en String
+        if(num_celu.length() == 9)
+        {
+            this.celular = celular;
+        }
+        else
+        {
+            System.out.println(" ¡Error!");
+        }
     }
 
     public String getCorreo() {
@@ -80,17 +119,24 @@ public class Asistente
         return edad;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEdad(int edad) 
+    {
+        if (edad >= 0 && edad < 100) {
+        this.edad = edad; // Asignamos primero
+        this.Categorizar();
+        } else {
+        System.out.println(" ¡Edad fuera de los parámetros!");
+        }
     }
 
-    public String getCategoria() {
-        return categoria;
+    public void Categorizar()
+    {
+        if (this.edad <= 10) {
+        this.categoria = "Niño";
+        } else if (this.edad <= 17) {
+        this.categoria = "Adolescente";
+        } else {
+        this.categoria = "Adulto";
+        }
     }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-    
-    
 }
