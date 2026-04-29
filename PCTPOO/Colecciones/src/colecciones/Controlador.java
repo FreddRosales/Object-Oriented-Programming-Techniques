@@ -10,9 +10,9 @@ import java.util.ArrayList;
  */
 class Controlador {
     ArrayList <Asistente> asist = new ArrayList();
-    public void Agregar (Asistente nuevoasistente)
+    public void Agregar (Asistente nuevoasistentee)
     {
-        asist.add(nuevoasistente);
+        asist.add(nuevoasistentee);
     }
     public void Listar()
     {
