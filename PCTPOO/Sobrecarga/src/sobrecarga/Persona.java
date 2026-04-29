@@ -142,6 +142,29 @@ public class Persona
     public static void setUltimcorrel(int ultimcorrel) {
         Persona.ultimcorrel = ultimcorrel;
     }
+    public class ValidarDatos {
+
+    public static boolean esNumeroEntero(String valor) {
+        try {
+            Integer.parseInt(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean esTextoValido(String texto) {
+        return texto != null && !texto.trim().isEmpty();
+    }
+
+    public static boolean esEdadValida(int edad) {
+        return edad > 0 && edad < 120;
+    }
+
+    public static boolean esCorreoValido(String correo) {
+        return correo != null && correo.matches("^[\\w.-]+@[\\w.-]+\\.\\w+$");
+    }
+}
    
     public Persona() {
     }
